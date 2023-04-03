@@ -102,8 +102,6 @@ void eliminacao_gauss(double **matriz, int linhas, int colunas)
 			somar_linhas(matriz, i, pivo_linha, colunas, -fator);
 			matriz[i][pivo_coluna] = 0;
 		}
-
-		// imprimir_matriz(matriz, linhas, colunas);
 		
 		pivo_linha += 1;
 		pivo_coluna += 1;
@@ -194,6 +192,8 @@ int main()
 }
 
 /*
+VALORES PARA TESTE
+
 3 3
 2 1 -1
 -3 -1 2

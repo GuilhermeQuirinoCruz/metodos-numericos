@@ -3,9 +3,7 @@
 
 double funcao(double x)
 {
-    double y = x * x;
-
-    return y;
+    return x * x;
 }
 
 double soma_riemann(double inicio_intervalo, double fim_intervalo, int subdivisoes)
@@ -35,7 +33,7 @@ int main()
     printf("Número de subdivisões: ");
     scanf("%d", &subdivisoes);
 
-    printf("Resultado da Soma de Riemann: %lf\n", soma_riemann(inicio_intervalo, fim_intervalo, subdivisoes));
+    printf("Resultado da Soma de Riemann: %.5lf\n", soma_riemann(inicio_intervalo, fim_intervalo, subdivisoes));
 
     return 0;
 }

@@ -32,7 +32,7 @@ void imprimir_binario(int *numero, int tamanho)
     printf("\n");
 }
 
-int converter_binario_decimal(int binario[], int tamanho)
+int converter_binario_decimal(int *binario, int tamanho)
 {
     int decimal = 0;
 
@@ -49,9 +49,7 @@ int main()
     setlocale(LC_ALL, "");
 
     int *numero_binario = converter_decimal_binario(10);
-
     imprimir_binario(numero_binario, bits_necessarios(10));
-
     printf("%d\n", converter_binario_decimal(numero_binario, bits_necessarios(10)));
 
     free(numero_binario);

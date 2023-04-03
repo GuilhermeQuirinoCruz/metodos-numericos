@@ -2,16 +2,6 @@
 #include <locale.h>
 #include <math.h>
 
-double funcao_quadratica(double x)
-{
-	return pow(x, 2);	
-}
-
-double funcao_cosseno(double x)
-{
-	return x - cos(x);
-}
-
 double funcao(double x)
 {
 	return pow(x, 2) - 3;

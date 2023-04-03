@@ -9,7 +9,6 @@ double funcao(double x)
 
 double funcao_de_iteracao(double x)
 {
-    // return cbrt(9 * x - 5);
 	return (pow(x, 3) + 5) / 9;
 }
 
@@ -33,7 +32,7 @@ int main()
 {
     setlocale(LC_ALL, "");
 	
-	printf("A raiz da função é aproximadamente: %.4lf\n", ponto_fixo(2.66, 0.001));
+	printf("A raiz da função é aproximadamente: %.5lf\n", ponto_fixo(2.66, 0.001));
     
     return 0;
 }

@@ -90,13 +90,6 @@ void jacobi(double **matriz, double *termos, int linhas, int colunas)
 		
 		erro = calcular_erro(solucao, solucao_temp, colunas);
 
-		printf("anterior:\n");
-		imprimir_solucao(solucao, colunas);
-		printf("atual:\n");
-		imprimir_solucao(solucao_temp, colunas);
-		printf("erro: %lf\n", erro);
-		printf("------------------------\n");
-
 		copiar_solucao(solucao_temp, solucao, colunas);
 	}
 	
@@ -149,7 +142,7 @@ int main()
 }
 
 /*
-Valores para teste:
+VALORES PARA TESTE
 3 3
 2 1 -1
 -3 -1 2

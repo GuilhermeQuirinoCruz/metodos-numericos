@@ -3,16 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-double funcao_quadratica(double x)
-{
-	return pow(x, 2);	
-}
-
-double funcao_cosseno(double x)
-{
-	return x - cos(x);
-}
-
 double funcao(double x)
 {
 	return pow(x, 2) - 3;
@@ -21,10 +11,7 @@ double funcao(double x)
 int comparar_sinais(double x1, double x2)
 {
 	double mult = funcao(x1) * funcao(x2);
-	if(mult < 0)
-		return -1;
-	else
-		return 1;
+	return mult < 0 ? -1 : 1;
 }
 
 double bissecao(double inicio_intervalo, double fim_intervalo, double erro, double k)
