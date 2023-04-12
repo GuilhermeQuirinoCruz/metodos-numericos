@@ -83,9 +83,9 @@ void jacobi(double **matriz, double *termos, int linhas, int colunas)
 				{
 					soma += (matriz[i][j] * solucao[j]) / matriz[i][i];
 				}
-				
-				solucao_temp[i] = (termos[i] / matriz[i][i]) - soma;
 			}
+
+			solucao_temp[i] = (termos[i] / matriz[i][i]) - soma;
 		}
 		
 		erro = calcular_erro(solucao, solucao_temp, colunas);
