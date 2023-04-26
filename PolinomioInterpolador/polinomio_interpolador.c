@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <locale.h>
 #include <math.h>
 
 void liberar_matriz(double **matriz, int linhas)
@@ -22,17 +21,6 @@ void imprimir_matriz(double **matriz, int linhas, int colunas)
 			printf("%.2lf ", matriz[i][j]);
 		}
 		printf("\n");
-	}
-}
-
-void imprimir_solucao(double **matriz, int linhas, int colunas)
-{
-	for(int i = 0; i < linhas; i ++)
-	{
-		if(matriz[i][i] != 0)
-			printf("x%d = %.2lf\n", (i + 1), matriz[i][colunas - 1]);
-		else
-			printf("x%d = indefinido\n", (i + 1));
 	}
 }
 
@@ -132,87 +120,62 @@ void eliminacao_gauss(double **matriz, int linhas, int colunas)
 	}
 }
 
+void imprimir_equacao(double **matriz, int tamanho)
+{
+	printf("f(x) = ");
+	for (int i = tamanho - 1; i >= 0; i--)
+	{
+		if(matriz[i][tamanho] > 0)
+			printf("+");
+		printf("%.3lf", matriz[i][tamanho]);
+
+		if(i != 0)
+			printf("x");
+		if(i > 1)
+			printf("^%d", i);
+		printf(" ");
+	}
+}
+
 int main()
 {
-	setlocale(LC_ALL, "");
+    int qtd_pontos;
+    double **matriz;
+    double x;
+    double fx;
 
-	double **matriz_coeficientes;
-	double *termos;
-	double **matriz_aumentada;
-	int linhas;
-	int colunas;
-	
-	printf("== Matriz de coeficientes ==\n");
-	printf("Número de linhas: ");
-	scanf("%d", &linhas);
-	
-	printf("Número de colunas: ");
-	scanf("%d", &colunas);
-	
-	matriz_coeficientes = (double **) malloc(linhas * sizeof(double *));
-	for(int i = 0; i < linhas; i++)
-	{
-		matriz_coeficientes[i] = (double *) malloc(colunas * sizeof(double));
-		for (int j = 0; j < colunas; j++)
-		{
-			printf("a[%d][%d]: \n", (i + 1), (j + 1));
-			scanf("%lf", &matriz_coeficientes[i][j]);
-		}
-	}
+    printf("Insira a quantidade de pontos: ");
+    scanf("%d", &qtd_pontos);
 
-	printf("== Termos ==\n");
-	termos = (double *) malloc(linhas * sizeof(double));
-	for(int i = 0; i < linhas; i++)
-	{
-		printf("Termo [%d]: ", (i + 1));
-		scanf("%lf", &termos[i]);
-	}
+    matriz = (double **) malloc(qtd_pontos * sizeof(double *));
 
-	matriz_aumentada = (double **) malloc(linhas * sizeof(double *));
-	for(int i = 0; i < linhas; i++)
-	{
-		matriz_aumentada[i] = (double *) malloc((colunas + 1) * sizeof(double));
-		for (int j = 0; j < colunas; j++)
-		{
-			matriz_aumentada[i][j] = matriz_coeficientes[i][j];
-		}
+    for (int i = 0; i < qtd_pontos; i++)
+    {
+        matriz[i] = (double *) malloc((qtd_pontos + 1) * sizeof(double));
+        
+        printf("Insira os valores do par x e f(x): ");
+		scanf("%lf%lf", &x, &fx);
 
-		matriz_aumentada[i][colunas] = termos[i];
-	}
+        matriz[i][0] = 1;
+        for (int i2 = 1; i2 < qtd_pontos; i2++)
+        {
+            matriz[i][i2] = pow(x, i2);
+        }
+        matriz[i][qtd_pontos] = fx;
+    }
 
-	eliminacao_gauss(matriz_aumentada, linhas, colunas + 1);
+	eliminacao_gauss(matriz, qtd_pontos, qtd_pontos + 1);
+	imprimir_equacao(matriz, qtd_pontos);
 
-	imprimir_matriz(matriz_aumentada, linhas, colunas);
-	imprimir_solucao(matriz_aumentada, linhas, colunas);
+    liberar_matriz(matriz, qtd_pontos);
 
-	liberar_matriz(matriz_coeficientes, linhas);
-	liberar_matriz(matriz_aumentada, linhas);
-	free(termos);
-	return 0;
+    return 0;
 }
 
 /*
-VALORES PARA TESTE
-
-3 3
-2 1 -1
--3 -1 2
--2 1 2
-8 -11 -3
-*/
-
-/*
-3 3
-1 3 -1
-2 1 1
-3 -1 1
-0 1 3
-*/
-
-/*
-3 3
-2 4 -2
--2 -2 2
-5 4 -3
-2 1 6
+Insira os valores do par x e f(x): -1 3
+Insira os valores do par x e f(x): 1 -5
+Insira os valores do par x e f(x): 2 10
+Insira os valores do par x e f(x): 3 -3
+-17.50000 1.08333x 16.50000x^2 -5.08333x^3
 */
