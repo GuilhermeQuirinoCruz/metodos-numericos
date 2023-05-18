@@ -31,7 +31,7 @@ int main()
     a = (somatorio_y - (b * somatorio_x)) / qtd_pontos;
 
     printf("f(x) = %.3lfx ", b);
-    if (b > 0)
+    if (a >= 0)
         printf("+ ");
     printf("%.3lf", a);
 
@@ -42,7 +42,7 @@ int main()
 4
 1 1
 2 3
--1 -3
+-1 2
 0 -1
 
 4
