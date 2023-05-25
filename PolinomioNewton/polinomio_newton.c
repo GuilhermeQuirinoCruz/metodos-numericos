@@ -34,13 +34,11 @@ int main()
     {
         for (int i2 = 0; i2 < qtd_pontos - 1 - i; i2++)
         {
-            // printf("%lf - %lf / %lf - %lf\n", delta[i][indice], delta[i][i2], pontos[indice], pontos[i2]);
             delta[i + 1][i2] = (delta[i][i2 + 1] - delta[i][i2]) / (pontos[i2 + 1 + i] - pontos[i2]);
-            printf("%lf\n", delta[i + 1][i2]);
         }
     }
 
-    printf("P(x)=");
+    printf("P(x) = ");
     // printf("%lf ", pontos[0][1]);
     for (int i = 0; i < qtd_pontos; i++)
     {
